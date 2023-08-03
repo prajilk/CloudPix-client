@@ -1,20 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import axiosConfig from "../../api/axios.config"
+import { UploadsContext } from '../../context/uploadsContext'
+import ShowDetails from './ShowDetails';
 
 const ShowFiles = () => {
 
-    const [images, setImages] = useState([]);
+    const { uploads, setUploads } = useContext(UploadsContext);
+    const [showModal, setShowModal] = React.useState(false);
 
     useEffect(() => {
         axiosConfig.get('/get-images').then((response) => {
-            setImages(response.data.images);
+            setUploads(response.data.images);
         }).catch((err) => {
             console.log(err);
         })
     }, [])
 
+    // Redirect the image url in new tab
     const showImg = (link) => {
         window.open(link, "_blank")
+    }
+
+    // Show images details popup
+    const showDetails = (id) => {
+
     }
 
     return (
@@ -25,11 +34,22 @@ const ShowFiles = () => {
                                 <img src="1281.png" alt="..." />
                                 <p className='font-montserrat break-words text-center font-semibold text-gray-500 w-full text-sm'>{collection}</p>
                             </div> */}
-                    {images.length !== 0 ? images.map((image, i) => {
+
+                    {uploads.length !== 0 ? uploads.map((image, i) => {
                         return (
-                            <div onClick={() => showImg(image.url)} className='cursor-pointer px-4 py-2 rounded-md hover:bg-gray-100 flex flex-col justify-center' key={i}>
-                                <img src={image.url} alt="..." className='max-h-24 mb-3' />
-                                <p className='font-montserrat break-words text-center font-semibold text-gray-500 w-full text-sm'>{image.filename}</p>
+                            <div className='cursor-pointer px-4 py-2 rounded-md hover:bg-gray-100 flex flex-col justify-center relative' key={i}>
+                                <div onClick={() => showImg(image.url)} className='max-h-24 mb-3 inline-flex justify-center flex-1'>
+                                    <img src={image.url} alt="..." className='h-full' />
+                                </div>
+                                <div className='flex items-center'>
+                                    <p className='font-montserrat break-words text-center font-semibold text-gray-500 w-full text-sm'>{image.filename}</p>
+                                    <div onClick={() => setShowModal(true)} className='px-1 py-2 hover:bg-gray-300 rounded-md'>
+                                        <svg fill="#000000" className='w-3 h-3' version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.055 32.055" transform="rotate(90)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967 C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967 s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967 c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z"></path> </g> </g></svg>
+                                    </div>
+                                </div>
+                                {showModal ? (
+                                    <ShowDetails setShowModal={setShowModal} image={image} />
+                                ) : null}
                             </div>
                         )
                     }) : <div className='absolute text-xl font-montserrat font-semibold'><span>Upload your first images</span></div>}

@@ -20,7 +20,7 @@ const Header = ({ position }) => {
                 </button>
 
                 {/* Nav in Small device */}
-                <div onClick={() => setToggleNav('-translate-x-full')} className={`md:hidden duration-75 ${toggleNav} transition bg-slate-400 bg-opacity-50 w-full h-screen z-40 top-0 left-0 bottom-0 fixed`}>
+                <div onClick={() => setToggleNav('-translate-x-full')} className={`md:hidden duration-75 ${toggleNav} transition bg-slate-400 bg-opacity-50 w-full h-screen z-50 top-0 left-0 bottom-0 fixed`}>
                     <ul className='bg-white min-h-screen min-w-[70%] float-left p-5'>
                         <h2 onClick={() => navigate('/')} className=" bg-violet-500 text-xs font-montserrat font-normal px-2 py-1 text-white inline-block rounded-ss-xl rounded-ee-xl mb-5">CloudPix</h2>
                         <li onClick={() => navigate('/dashboard')} className='p-3 border-b-2 border-slate-100 font-montserrat font-bold hover:bg-slate-100'>My Storage</li>
