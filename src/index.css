@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@100;200;300;400&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+    @apply w-2
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-slate-200 bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply rounded-xl bg-gray-300;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500
+}
+
+#label-file-upload.drag-active {
+    background-color: #ffffff;
+}
+
+.loader {
+    border-top-color: #885CF6;
+    -webkit-animation: spinner .9s linear infinite;
+    animation: spinner .9s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

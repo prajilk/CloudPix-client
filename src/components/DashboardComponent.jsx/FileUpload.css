@@ -1,0 +1,80 @@
+.uppy-Root .uppy-Dashboard-poweredBy {
+    @apply hidden
+}
+
+.uppy-Container {
+    @apply h-full
+}
+
+.uppy-Dashboard-inner {
+    /* height: calc(100vh - 14rem) !important; */
+    @apply !h-[calc(100vh_-_14rem)]
+}
+
+.uppy-StatusBar.is-complete .uppy-StatusBar-statusIndicator,
+.uppy-StatusBar.is-complete .uppy-StatusBar-progress,
+.uppy-DashboardContent-addMore,
+.uppy-DashboardContent-back,
+.uppy-DashboardContent-save,
+.uppy-StatusBar-actionBtn {
+    @apply text-violet-500
+}
+
+.uppy-DashboardContent-back:hover,
+.uppy-DashboardContent-save:hover,
+.uppy-DashboardContent-addMore:hover,
+.uppy-DashboardContent-addMoreCaption:hover {
+    @apply text-violet-600
+}
+
+.uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload,
+.uppy-StatusBar.is-complete .uppy-StatusBar-progress {
+    @apply bg-violet-500
+}
+
+.uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload:hover {
+    @apply bg-violet-600
+}
+
+.uppy-StatusBar-actionBtn--retry {
+    color: #fff !important;
+}
+
+.uppy-StatusBar-statusSecondary {
+    @apply font-montserrat
+}
+
+.uppy-DashboardContent-title,
+.uppy-StatusBar-statusPrimary {
+    @apply font-montserrat font-bold
+}
+
+.uppy-Dashboard-dropFilesHereHint {
+    @apply font-montserrat font-semibold p-0 border-violet-500 bg-[50%_37%]
+}
+
+.uppy-Dashboard-AddFiles {
+    /* @apply bg-red-400 */
+}
+
+.uppy-Dashboard-AddFiles-title {
+    @apply h-full flex flex-col justify-center items-center
+}
+
+.uppy-Dashboard-browse {
+    @apply bg-violet-500 text-white px-6 py-4 rounded-full capitalize mb-3 mt-3;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* .myCustomUppySpan-DropFile-text {
+    @apply font-montserrat font-bold text-gray-500
+} */
+
+.uppy-Dashboard-browse:hover,
+.uppy-Dashboard-browse:focus {
+    @apply border-b-0
+}
+
+.uppy-Dashboard-AddFiles-title {
+    @apply font-montserrat font-semibold
+}
