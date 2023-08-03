@@ -18,7 +18,7 @@ const FileUpload = ({ toggleFileUpload, setToggleFileUpload }) => {
 
     // Add XHRUpload plugin to enable server-side uploads
     uppy.use(XHRUpload, {
-        endpoint: `http://localhost:5000/upload`, // Replace with your server-side upload endpoint
+        endpoint: process.env.UPLOAD_ENDPOINT_URL, // Replace with your server-side upload endpoint
         withCredentials: true,
     });
 
