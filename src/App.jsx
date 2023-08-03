@@ -4,7 +4,7 @@ import Error404 from "./components/error/Error404";
 import { Suspense, lazy } from "react"
 
 const Home = lazy(() => import("./pages/Home"));
-const Login = lazy(() => import("./Pages/Login"));
+const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 
