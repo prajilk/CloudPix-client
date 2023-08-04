@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axiosConfig from "../../api/axios.config"
 import { UploadsContext } from '../../context/uploadsContext'
-import ShowDetails from './ShowDetails';
+import MyDetailsModal from './MyDetailsModal';
 
 const ShowFiles = () => {
 
     const { uploads, setUploads } = useContext(UploadsContext); // Get uploads state from UploadContext (contains all uploads)
-    const [showModal, setShowModal] = React.useState(false); // Show details popup
     const [selectedImage, setSelectedImage] = useState(null); // Store the index of the selected image
-
+    const [isOpen, setIsOpen] = useState(false) // Show details popup
 
     // Get all images of the user
     useEffect(() => {
@@ -27,7 +26,7 @@ const ShowFiles = () => {
     // Open popup
     const openModal = (imageIndex) => {
         setSelectedImage(imageIndex); // Set the index of the selected image
-        setShowModal(true); // Open the modal
+        setIsOpen(true)// Open the modal
     };
 
     return (
@@ -54,8 +53,8 @@ const ShowFiles = () => {
                             </div>
                         )
                     }) : <div className='absolute text-xl font-montserrat font-semibold'><span>Upload your first images</span></div>}
-                    {showModal && selectedImage !== null && (
-                        <ShowDetails setShowModal={setShowModal} image={uploads[selectedImage]} />
+                    {isOpen && selectedImage !== null && (
+                        <MyDetailsModal isOpen={isOpen} setIsOpen={setIsOpen} image={uploads[selectedImage]} />
                     )}
                 </div>
             </div>

@@ -12,19 +12,19 @@ const Dashboard = () => {
     const [uploads, setUploads] = useState([]);
 
     // Validate user state to verifying user
-    const [validate, setValidate] = useState(false);
+    const [validate, setValidate] = useState(true);
 
     const navigate = useNavigate(); // Initialize navigate to go to other pages
 
     // Axios request for validate user identity.
-    useEffect(() => {
-        axiosConfig.get('/user/verify').then(({ data }) => {
-            // Validated user
-            setValidate(true);
-        }).catch(() => {
-            navigate('/login')
-        })
-    }, [navigate]);
+    // useEffect(() => {
+    //     axiosConfig.get('/user/verify').then(({ data }) => {
+    //         // Validated user
+    //         setValidate(true);
+    //     }).catch(() => {
+    //         navigate('/login')
+    //     })
+    // }, [navigate]);
 
     return (
         <>
