@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Bars, User } from '../../assets/SVGs';
+import { ProfileModalContext } from '../../context/uploadsContext';
 
 const Header = ({ position }) => {
 
-    const [toggleNav, setToggleNav] = useState('-translate-x-full');
+    const [isDashboard, setIsDashboard] = useState(true)
 
-    const navigate = useNavigate();
+    const location = useLocation();
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setIsDashboard(false)
+        }
+    }, [])
+
+    const ProfileModal = useContext(ProfileModalContext);
+
+    const [toggleNav, setToggleNav] = useState('-translate-x-full'); // Hide side nab bar
+
+    const navigate = useNavigate(); // Initialize useNavigate for routing
 
     return (
         <nav className={`w-full p-3 md:p-5 md:pr-0 flex justify-between ${position}`}>
@@ -13,10 +26,11 @@ const Header = ({ position }) => {
                 <h2 onClick={() => navigate('/')} className="bg-violet-500 md:text-xl cursor-pointer font-montserrat font-normal px-2 py-1 text-white inline-block rounded-ss-xl rounded-ee-xl shadow-xl">CloudPix</h2>
             </div>
             <div>
+                {isDashboard && <button type="button" onClick={() => ProfileModal.setProfileModal(true)} className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-violet-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 hover:text-white">
+                    <User />
+                </button>}
                 <button type="button" onClick={() => setToggleNav('translate-x-0')} className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-violet-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 hover:bg-violet-500 hover:text-white">
-                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
+                    <Bars />
                 </button>
 
                 {/* Nav in Small device */}

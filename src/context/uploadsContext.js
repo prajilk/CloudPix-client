@@ -1,3 +1,6 @@
 import { createContext } from "react";
 
-export const UploadsContext = createContext();
+const UploadsContext = createContext();
+const ProfileModalContext = createContext();
+
+export { UploadsContext, ProfileModalContext }
