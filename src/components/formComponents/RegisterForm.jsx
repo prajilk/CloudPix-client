@@ -4,6 +4,7 @@ import Input from './Input';
 import SubmitButton from './SubmitButton';
 import axios from '../../api/axios.config';
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast';
 
 const RegisterForm = () => {
 
