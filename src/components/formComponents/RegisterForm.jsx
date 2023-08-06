@@ -26,6 +26,7 @@ const RegisterForm = () => {
             // API Call for registering a new user
             axios.post('/register', { email, password, fullName }).then(() => {
                 setLoading(false); // Deactivate loading animation on the button
+                toast.success("Account created successfully! Login now.")
                 navigate('/login'); // Navigate to login route after registration
             }).catch((err) => {
                 if (err.response.data.error) {
