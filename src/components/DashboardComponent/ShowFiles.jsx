@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axiosConfig from "../../api/axios.config"
+import heic2any from 'heic2any';
 import { UploadsContext } from '../../context/uploadsContext'
 import MyDetailsModal from './Modal/MyDetailsModal';
 import { ThreeDots } from '../../assets/SVGs';
+import ImageContainer from './Modal/components/ImageContainer';
 
 const ShowFiles = () => {
 
@@ -12,8 +14,8 @@ const ShowFiles = () => {
 
     // Get all images of the user
     useEffect(() => {
-        axiosConfig.get('/get-images').then((response) => {
-            setUploads(response.data.images); // Set all images to the state
+        axiosConfig.get('/get-images').then(({ data }) => {
+            setUploads(data.images); // Set all images to the state
         }).catch((err) => {
             console.log(err);
         })
@@ -43,7 +45,7 @@ const ShowFiles = () => {
                         return (
                             <div className='cursor-pointer px-4 py-2 rounded-md hover:bg-gray-100 flex flex-col justify-center relative' key={i}>
                                 <div onClick={() => showImg(image.url)} className='max-h-24 mb-3 inline-flex justify-center flex-1'>
-                                    <img src={image.url} alt="..." className='h-full' />
+                                    <ImageContainer key={i} image={image} />
                                 </div>
                                 <div className='flex items-center'>
                                     <p className='font-montserrat break-words text-center font-semibold text-gray-500 w-full text-sm truncate'>{image.filename}</p>
