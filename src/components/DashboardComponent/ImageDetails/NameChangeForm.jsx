@@ -44,8 +44,11 @@ const NameChangeForm = ({ filename, imageId, setIsOpen }) => {
                 });
                 setIsOpen(false); // Close modal after change
             })
-            .catch(() => {
-                toast.error("Failed to change filename!")
+            .catch(({ response }) => {
+                if (response.data.message.message === "Cannot read properties of null (reading 'url')")
+                    toast.error("Failed to change filename! Try different name.")
+                else
+                    toast.error("Failed to change filename!")
                 setLoading(false)
             })
     }
