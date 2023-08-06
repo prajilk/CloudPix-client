@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axiosConfig from "../../api/axios.config"
-import heic2any from 'heic2any';
 import { UploadsContext } from '../../context/uploadsContext'
 import MyDetailsModal from './Modal/MyDetailsModal';
 import { ThreeDots } from '../../assets/SVGs';
 import ImageContainer from './Modal/components/ImageContainer';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 
 const ShowFiles = () => {
 
@@ -35,7 +35,7 @@ const ShowFiles = () => {
     return (
         <div className='w-full h-full border-2 rounded-lg bg-white p-3'>
             <div className='w-full h-full border-2 border-gray-100 rounded-lg bg-white p-5 pt-0 overflow-scroll'>
-                <div className='grid grid-cols-2 gap-5 lg:gap-14 md:grid-cols-3 lg:grid-cols-5'>
+                <div className='grid grid-cols-2 gap-5 pt-3 lg:gap-14 md:grid-cols-3 lg:grid-cols-5'>
                     {/* <div className='cursor-pointer px-4 py-2 rounded-md hover:bg-gray-100' key={i}>
                                 <img src="1281.png" alt="..." />
                                 <p className='font-montserrat break-words text-center font-semibold text-gray-500 w-full text-sm'>{collection}</p>
@@ -47,8 +47,17 @@ const ShowFiles = () => {
                                 <div onClick={() => showImg(image.url)} className='max-h-24 mb-3 inline-flex justify-center flex-1'>
                                     <ImageContainer key={i} image={image} />
                                 </div>
-                                <div className='flex items-center'>
-                                    <p className='font-montserrat break-words text-center font-semibold text-gray-500 w-full text-sm truncate'>{image.filename}</p>
+                                <div className='flex items-center justify-between'>
+                                    <TooltipPrimitive.TooltipProvider delayDuration={300}>
+                                        <TooltipPrimitive.Tooltip>
+                                            <TooltipPrimitive.TooltipTrigger className="overflow-hidden">
+                                                <p className='font-montserrat break-words text-center font-semibold text-gray-500 w-full text-sm truncate'>{image.filename}</p>
+                                            </TooltipPrimitive.TooltipTrigger>
+                                            <TooltipPrimitive.TooltipContent className='bg-black text-xs text-white z-20 px-3 py-2 font-montserrat rounded-md cursor-text'>
+                                                <p>{image.filename}</p>
+                                            </TooltipPrimitive.TooltipContent>
+                                        </TooltipPrimitive.Tooltip>
+                                    </TooltipPrimitive.TooltipProvider>
                                     <div onClick={() => openModal(i)} className='px-1 py-2 hover:bg-gray-300 rounded-md'>
                                         <ThreeDots />
                                     </div>

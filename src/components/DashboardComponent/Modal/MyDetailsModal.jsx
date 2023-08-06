@@ -53,10 +53,8 @@ const MyDetailsModal = ({ isOpen, setIsOpen, image }) => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                                    <Dialog.Title
-                                        as="div"
-                                    >
+                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg pb-3 bg-white text-left align-middle shadow-xl transition-all">
+                                    <Dialog.Title as="div" className='px-5 pt-3 pb-2'>
                                         <p className="my-1 text-sm leading-relaxed font-montserrat">
                                             Filename: &nbsp;
                                             <span className='font-bold'>{image?.filename}</span>
@@ -70,9 +68,9 @@ const MyDetailsModal = ({ isOpen, setIsOpen, image }) => {
                                             <span className='font-bold'>{image ? new Date(image.date).toISOString().slice(0, 10) : ''}</span>
                                         </p>
                                     </Dialog.Title>
-                                    <div className="mt-2 border-t-2">
+                                    <div className="mt-2 border-t">
                                         <a href={image?.url} className='outline-none' download rel="noopener noreferrer" target="_blank">
-                                            <div className='py-2 flex items-center hover:bg-slate-100 cursor-pointer'>
+                                            <div className='py-2 px-5 flex items-center hover:bg-slate-100 cursor-pointer'>
                                                 <p className="my-1 text-sm leading-relaxed font-montserrat flex items-center gap-2">
                                                     <Download />
                                                     <span className='font-bold'>Download</span>
@@ -80,7 +78,7 @@ const MyDetailsModal = ({ isOpen, setIsOpen, image }) => {
                                             </div>
                                         </a>
                                         <Disclosure>
-                                            <Disclosure.Button className="py-2 flex items-center hover:bg-slate-100 cursor-pointer w-full">
+                                            <Disclosure.Button className="py-2 px-5 flex items-center hover:bg-slate-100 cursor-pointer w-full">
                                                 <p className="my-1 text-sm leading-relaxed font-montserrat flex items-center gap-2">
                                                     <Pencil />
                                                     <span className='font-bold'>Rename</span>
@@ -90,14 +88,14 @@ const MyDetailsModal = ({ isOpen, setIsOpen, image }) => {
                                                 <NameChangeForm filename={image?.filename} imageId={image?._id} setIsOpen={setIsOpen} />
                                             </Disclosure.Panel>
                                         </Disclosure>
-                                        <div className='py-2 flex items-center hover:bg-slate-100 cursor-pointer' onClick={() => copyUrl(image?.url)}>
+                                        <div className='py-2 px-5 flex items-center hover:bg-slate-100 cursor-pointer' onClick={() => copyUrl(image?.url)}>
                                             <p className="my-1 text-sm leading-relaxed font-montserrat flex items-center gap-2">
                                                 <Share />
                                                 <span className='font-bold'>Share</span>
                                             </p>
                                         </div>
                                         <Disclosure>
-                                            <Disclosure.Button className="py-2 flex items-center hover:bg-slate-100 cursor-pointer w-full">
+                                            <Disclosure.Button className="py-2 px-5 flex items-center hover:bg-slate-100 cursor-pointer w-full">
                                                 <p className="my-1 text-sm leading-relaxed font-montserrat flex items-center gap-2">
                                                     <Trash />
                                                     <span className='font-bold'>Delete</span>
@@ -116,6 +114,7 @@ const MyDetailsModal = ({ isOpen, setIsOpen, image }) => {
             </Transition>
         </>
     )
+
 }
 
 export default MyDetailsModal;
