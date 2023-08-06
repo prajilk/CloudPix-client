@@ -4,7 +4,6 @@ import useFormData from '../../hooks/useFormData';
 import SubmitButton from './SubmitButton';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../api/axios.config';
-import { toast } from 'react-hot-toast';
 
 const LoginForm = () => {
 
@@ -28,7 +27,6 @@ const LoginForm = () => {
       // API Call for registering a new user
       axios.post('/login', { email, password }).then(() => {
         setLoading(false); // Deactivate loading animation on the button
-        toast.success("Successfully logged in!")
         navigate('/dashboard'); // Navigate to login route after registration
       }).catch((err) => {
         if (err.response.data.error) {
