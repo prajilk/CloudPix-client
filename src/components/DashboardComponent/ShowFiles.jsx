@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axiosConfig from "../../api/axios.config"
 import { UploadsContext } from '../../context/uploadsContext'
 import MyDetailsModal from './Modal/MyDetailsModal';
-import { ThreeDots } from '../../assets/SVGs';
 import ImageContainer from './Modal/components/ImageContainer';
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 
 const ShowFiles = () => {
 
@@ -16,9 +14,7 @@ const ShowFiles = () => {
     useEffect(() => {
         axiosConfig.get('/get-images').then(({ data }) => {
             setUploads(data.images); // Set all images to the state
-        }).catch((err) => {
-            console.log(err);
-        })
+        }).catch(() => { })
     }, [])
 
     // Redirect the image url in new tab
@@ -44,24 +40,9 @@ const ShowFiles = () => {
                     {uploads.length !== 0 ? uploads.map((image, i) => {
                         return (
                             <div className='cursor-pointer px-4 py-2 rounded-md hover:bg-gray-100 flex flex-col justify-center relative' key={i}>
-                                <div onClick={() => showImg(image.url)} className='max-h-24 mb-3 inline-flex justify-center flex-1'>
-                                    <ImageContainer key={i} image={image} />
-                                </div>
-                                <div className='flex items-center justify-between'>
-                                    <TooltipPrimitive.TooltipProvider delayDuration={300}>
-                                        <TooltipPrimitive.Tooltip>
-                                            <TooltipPrimitive.TooltipTrigger className="overflow-hidden">
-                                                <p className='font-montserrat break-words text-center font-semibold text-gray-500 w-full text-sm truncate'>{image.filename}</p>
-                                            </TooltipPrimitive.TooltipTrigger>
-                                            <TooltipPrimitive.TooltipContent className='bg-black text-xs text-white z-20 px-3 py-2 font-montserrat rounded-md cursor-text'>
-                                                <p>{image.filename}</p>
-                                            </TooltipPrimitive.TooltipContent>
-                                        </TooltipPrimitive.Tooltip>
-                                    </TooltipPrimitive.TooltipProvider>
-                                    <div onClick={() => openModal(i)} className='px-1 py-2 hover:bg-gray-300 rounded-md'>
-                                        <ThreeDots />
-                                    </div>
-                                </div>
+
+                                <ImageContainer imageKey={i} image={image} openModal={openModal} />
+
                             </div>
                         )
                     }) : <div className='absolute text-xl font-montserrat font-semibold'><span>Upload your first images</span></div>}
