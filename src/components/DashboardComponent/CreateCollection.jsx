@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
-import axiosConfig from '../../api/axios.config';
 import LoadingButton from '../loading/LoadingButton';
-import { ChevronRight, FolderGray } from '../../assets/SVGs';
+import { CrossCancel, FolderGray } from '../../assets/SVGs';
+import { toast } from 'react-hot-toast';
 
 const CreateCollection = ({ toggleCreateCollection, setToggleCreateCollection }) => {
 
-    const [collection, setCollection] = useState("");
-    const [loading, setLoading] = useState(false);
-
     const createCollection = (e) => {
         e.preventDefault()
-        setLoading(true);
-        axiosConfig.post("/create-collection", { collectionName: collection })
-            .then((res) => {
-                console.log("Collection created");
-                setLoading(false);
-                setToggleCreateCollection(false)
-            })
-            .catch((error) => {
-                setLoading(false);
-                setToggleCreateCollection(false)
-                console.log(error);
-            })
+        toast.success("Work in progress!", {
+            style: {
+                color: '#E49B0F'
+            },
+            icon: '⚠️'
+        })
     }
 
     return (
@@ -29,7 +20,7 @@ const CreateCollection = ({ toggleCreateCollection, setToggleCreateCollection })
             <div className={`bg-white w-full h-fit rounded-lg p-2 md:w-fit ${toggleCreateCollection ? 'translate-x-0' : 'translate-x-full'} duration-500 border-2 shadow-xl`}>
                 <div className='inline-flex gap-5 items-center'>
                     <button onClick={() => setToggleCreateCollection(false)} className='p-2 bg-violet-100 rounded-md'>
-                        <ChevronRight />
+                        <CrossCancel />
                     </button>
                     <span className='font-montserrat font-bold text-gray-600'>Upload Image</span>
                 </div>
@@ -37,11 +28,9 @@ const CreateCollection = ({ toggleCreateCollection, setToggleCreateCollection })
                     <form className='relative mt-4' onSubmit={createCollection}>
                         <input
                             type="text"
-                            value={collection}
                             name='collection'
                             required
                             pattern="\S(.*\S)?"
-                            onChange={(e => setCollection(e.target.value))}
                             placeholder='Enter collection name'
                             maxLength="25"
                             className='p-3 bg-gray-100 rounded-xl mb-5 w-full ps-12 outline-none font-montserrat font-semibold hover:border-violet-500 focus:outline-violet-500 placeholder:font-normal placeholder:text-slate-500' />
