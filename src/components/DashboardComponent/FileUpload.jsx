@@ -42,7 +42,7 @@ const FileUpload = ({ toggleFileUpload, setToggleFileUpload }) => {
                 updateUploads(data.uploads) // Send array of data with url and id to updateUploads function
             })
             .catch(() => {
-                toast.error("Something went wrong")
+                toast.error("Something went wrong, Reload the page!")
             })
     }
 
@@ -54,7 +54,7 @@ const FileUpload = ({ toggleFileUpload, setToggleFileUpload }) => {
         autoProceed: false,
     }).use(Tus, {
         endpoint: import.meta.env.VITE_UPLOAD_ENDPOINT_URL,
-        withCredentials: true
+        withCredentials: true,
     });
 
     // Store newly uploaded images into tempUploads when upload successfully completed.
