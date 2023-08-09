@@ -55,7 +55,7 @@ const MyDetailsModal = ({ isOpen, setIsOpen, image }) => {
                             >
                                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg pb-3 bg-white text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title as="div" className='px-5 pt-3 pb-2'>
-                                        <p className="my-1 text-sm leading-relaxed font-montserrat">
+                                        <p className="my-1 text-sm break-all leading-relaxed font-montserrat">
                                             Filename: &nbsp;
                                             <span className='font-bold'>{image?.filename}</span>
                                         </p>
