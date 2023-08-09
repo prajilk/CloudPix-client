@@ -72,12 +72,17 @@ const FileUpload = ({ toggleFileUpload, setToggleFileUpload }) => {
         }
     })
 
+    const closeUploadTab = () => {
+        setToggleFileUpload(false);
+        updateUploadsLocally(tempUploads);
+        updateDatabase(tempUploads);
+    }
+
     return (
         <div className={`absolute w-full h-fit top-11 right-0 flex justify-end p-5 px-3 md:mt-[.1rem] md:w-fit md:items-center overflow-hidden ${toggleFileUpload ? 'z-40' : '-z-40'} duration-500`}>
             <div className={`bg-white w-full h-fit rounded-lg p-2 md:w-fit ${toggleFileUpload ? 'translate-x-0' : 'translate-x-full'} duration-500 border-2 shadow-xl`}>
                 <div className='inline-flex gap-5 items-center'>
-                    <button onClick={() => { setToggleFileUpload(false); updateUploadsLocally(tempUploads); updateDatabase(tempUploads); }} className='p-2 bg-violet-100 rounded-md'>
-                        {/* <ChevronRight /> */}
+                    <button onClick={closeUploadTab} className='p-2 bg-violet-100 rounded-md'>
                         <CrossCancel />
                     </button>
                     <span className='font-montserrat font-bold text-gray-600'>Upload Image</span>
