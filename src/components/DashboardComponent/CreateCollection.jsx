@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LoadingButton from '../loading/LoadingButton';
 import { CrossCancel, FolderGray } from '../../assets/SVGs';
 import { toast } from 'react-hot-toast';
@@ -35,7 +35,7 @@ const CreateCollection = ({ toggleCreateCollection, setToggleCreateCollection })
                             maxLength="25"
                             className='p-3 bg-gray-100 rounded-xl mb-5 w-full ps-12 outline-none font-montserrat font-semibold hover:border-violet-500 focus:outline-violet-500 placeholder:font-normal placeholder:text-slate-500' />
                         <FolderGray />
-                        <LoadingButton loading={loading} value="Create" width="full" />
+                        <LoadingButton loading={false} value="Create" width="full" />
                     </form>
                 </div>
             </div>
